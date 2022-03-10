@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useContext } from 'react'
 import { firstPgStrings } from "../data/Strings"
 import appStore from '../appStorePlayStoreStickers/appStoreS.svg'
 import playStore from '../appStorePlayStoreStickers/playStoreS.svg'
@@ -9,6 +9,7 @@ import rupee from '../lotties/rupee.json'
 import wallet from '../lotties/wallet.json'
 import { a, config, useSprings } from 'react-spring'
 import logo from '../logo.svg';
+import { ShowLogo } from '../App'
 
 
 const FirstPage = ({ open, navMove }) => {
@@ -20,6 +21,9 @@ const FirstPage = ({ open, navMove }) => {
     const playStoreRef = useRef();
     const qrRef = useRef();
     const pgRf = useRef();
+
+    const logoFun = useContext(ShowLogo);
+    const showLogo=logoFun.set
 
     function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -78,6 +82,14 @@ const FirstPage = ({ open, navMove }) => {
     })))
     let time = useRef();
     const logoRef = useRef();
+
+   const isBLA = useOnScreen(logoRef)
+
+   useEffect(()=>{
+        if(window.innerWidth>620)
+            showLogo(!isBLA)
+   }, [isBLA])
+
     useEffect(() => {
 
         if(window.innerWidth>620){
@@ -111,7 +123,8 @@ const FirstPage = ({ open, navMove }) => {
 
                 <div ref={stickerRef} style={{ gap: '1em', }} className='f ac storeStickerCont '>
             <img ref={appStoreRef} className='stickerImage' src={appStore} />
-            <img ref={playStoreRef} className='stickerImage' src={playStore} />
+            <img onClick={ ()=>window.open("https://play.google.com/store/apps/details?id=com.sharecard.sharecard")
+            } ref={playStoreRef} className='stickerImage' src={playStore} />
             <img ref={qrRef} onClick={open} className='stickerImage' style={{ height: '2.5em', marginLeft: '1em' }} src={qrCodeIcon} />
         </div>
             </div>
@@ -144,5 +157,28 @@ const FirstPage = ({ open, navMove }) => {
 
     </div>
 }
+
+function useOnScreen(ref, rootMargin = "0px") {
+    // State and setter for storing whether element is visible
+    const [isIntersecting, setIntersecting] = useState(false);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          // Update our state when observer callback fires
+          setIntersecting(entry.isIntersecting);
+        },
+        {
+          rootMargin,
+        }
+      );
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        observer.unobserve(ref.current);
+      };
+    }, []); // Empty array ensures that effect is only run on mount and unmount
+    return isIntersecting;
+  }
 
 export default FirstPage

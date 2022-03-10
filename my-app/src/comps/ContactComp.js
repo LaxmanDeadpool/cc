@@ -47,10 +47,11 @@ export default function ContactComp({ setHgt, navMove }) {
 
                 <div className="f fc">
                     <p className="socialP">Social</p>
-                    <div style={{ gap: '1em' }} className="f">
-                        <img style={{ marginTop: -2 }} className="socialMediaImg" src={tw} onClick={() => window.open(social[0].url)} />
-                        <img style={{transform: `scale(.95)`}} className="socialMediaImg" src={ig} onClick={() => window.open(social[1].url)} />
-                        <img style={{transform: `scale(1.2)`}} className="socialMediaImg" src={yt} onClick={() => window.open(social[2].url)} />
+                    <div style={{ gap: '1em', flexWrap: 'wrap', minWidth: '5em' }} className="f">
+                        <img style={{ transform: `scale(.95)` }} className="socialMediaImg" src={ig} onClick={() => window.open(social[0].url)} />
+                        <img style={{ marginTop: 0, transform: `scale(1.15)`}} className="socialMediaImg" src={tw} onClick={() => window.open(social[1].url)} />
+                        <img style={{transform: `scale(1.2)`, marginTop: 1}} className="socialMediaImg" src={yt} onClick={() => window.open(social[2].url)} />
+                        <img style={{transform: `scale(1)`}} className="socialMediaImg" src={fb} onClick={() => window.open(social[3].url)} />
                     </div>
                 </div>
             </div>

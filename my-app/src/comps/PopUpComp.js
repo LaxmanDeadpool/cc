@@ -41,7 +41,8 @@ export default function PopUpComp({close}) {
           </div>
         </div> */}
         <div style={{marginTop: '1em'}} className="f storeIcons ac">
-            <img style={{width: '1.25em', cursor: 'pointer'}} src={playStore}/>
+            <img onClick={ ()=>window.open("https://play.google.com/store/apps/details?id=com.sharecard.sharecard")
+            } style={{width: '1.25em', cursor: 'pointer'}} src={playStore}/>
             {/* <img style={{width: '1.25em', cursor: 'pointer'}} src={appStore}/> */}
         </div>
       </div>

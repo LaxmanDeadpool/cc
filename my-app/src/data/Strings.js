@@ -89,9 +89,11 @@ export const contactSection={
             phone: '+918006423975'
         },
     social: [
-        { url: "https://twitter.com/CreditoMedia?s=20&t=98xkFaioy9WMx_WgZFwUMQ" },
         { url: "https://instagram.com/credito.solutions?utm_medium=copy_link" },
+        { url: "https://twitter.com/CreditoMedia?s=20&t=98xkFaioy9WMx_WgZFwUMQ" },
+        
         { url: "https://www.youtube.com/channel/UCCQMaDcyJNnBSwsbBI-HRCg" },
+        { url: "https://www.facebook.com/credito.solutions/" }
     ]
 }
 
